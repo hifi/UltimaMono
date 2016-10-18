@@ -47,7 +47,8 @@ namespace UltimaXNA.Core.Input
         {
             get
             {
-                return false;
+                return m_KeyboardState.IsKeyDown(Keys.LeftControl) ||
+                       m_KeyboardState.IsKeyDown(Keys.RightControl);
             }
         }
 
@@ -55,7 +56,8 @@ namespace UltimaXNA.Core.Input
         {
             get
             {
-                return false;
+                return m_KeyboardState.IsKeyDown(Keys.LeftShift) ||
+                       m_KeyboardState.IsKeyDown(Keys.RightShift);
             }
         }
 
@@ -74,7 +76,7 @@ namespace UltimaXNA.Core.Input
 
         public bool IsKeyDown(WinKeys key)
         {
-            return false;
+            return m_KeyboardState.IsKeyDown(TranslateToXNAKey(key));
         }
 
         public List<InputEventKeyboard> GetKeyboardEvents()
