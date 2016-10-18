@@ -69,7 +69,6 @@
     <Compile Include="UltimaXNA\dev\Core\Configuration\SettingsFile.cs" />
     <Compile Include="UltimaXNA\dev\Core\Configuration\TextSettingsFileWriter.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\EventLevels.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Diagnostics\HighPerformanceTimer.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Listeners\AEventListener.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Listeners\MsgBoxOnCriticalListener.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Profiler.cs" />
@@ -164,8 +163,6 @@
     <Compile Include="UltimaXNA\dev\Settings.cs" />
     <Compile Include="UltimaXNA\dev\Core\Configuration\ASettingsSection.cs" />
     <Compile Include="UltimaXNA\dev\Configuration\UltimaOnlineSettings.cs" />
-    <Compile Include="UltimaXNA\dev\Core\ConsoleManager.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Input\InputManager.cs" />
     <Compile Include="UltimaXNA\dev\Core\Windows\WinKeys.cs" />
     <Compile Include="UltimaXNA\dev\Core\Input\InputEvent.cs" />
     <Compile Include="UltimaXNA\dev\Core\Input\InputEventKeyboard.cs" />
@@ -465,7 +462,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\Resources\RadarColorData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\SoundData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\ClilocResource.cs" />
-    <Compile Include="UltimaXNA\dev\UltimaGame.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\IO\FileManager.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Entities\Items\Containers\Container.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Entities\Items\Containers\Corpse.cs" />
@@ -553,7 +549,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\MiniMapChunk.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\MiniMapTexture.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Maps\Map.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
     <Compile Include="UltimaXNA\dev\Core\Graphics\VertexPositionNormalTextureHue.cs" />
     <Compile Include="UltimaXNA\dev\Properties\AssemblyInfo.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\AnimationResource.cs" />
@@ -569,14 +564,26 @@
     <None Include="UltimaXNA\dev\Ultima\Audio\UOSound.cs" />
     <Compile Include="UltimaMono\dev\Ultima\Audio\AudioService.cs" />
     <None Include="UltimaXNA\dev\Ultima\Audio\AudioService.cs" />
-    <None Include="UltimaMono\dev\Ultima\Audio\UOMusic.cs" />
-    <None Include="UltimaMono\dev\Ultima\Audio\UOSound.cs" />
+    <Compile Include="UltimaMono\dev\UltimaGame.cs" />
+    <None Include="UltimaXNA\dev\UltimaGame.cs" />
+    <Compile Include="UltimaMono\dev\Core\ConsoleManager.cs" />
+    <None Include="UltimaXNA\dev\Core\ConsoleManager.cs" />
+    <Compile Include="UltimaMono\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <Compile Include="UltimaMono\dev\Core\Input\InputManager.cs" />
+    <None Include="UltimaXNA\dev\Core\Input\InputManager.cs" />
+    <Compile Include="UltimaMono\dev\Core\Diagnostics\HighPerformanceTimer.cs" />
+    <None Include="UltimaXNA\dev\Core\Diagnostics\HighPerformanceTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
     <Folder Include="UltimaMono\dev\" />
     <Folder Include="UltimaMono\dev\Ultima\" />
     <Folder Include="UltimaMono\dev\Ultima\Audio\" />
+    <Folder Include="UltimaMono\dev\Core\" />
+    <Folder Include="UltimaMono\dev\Core\Graphics\" />
+    <Folder Include="UltimaMono\dev\Core\Input\" />
+    <Folder Include="UltimaMono\dev\Core\Diagnostics\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

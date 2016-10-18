@@ -14,4 +14,12 @@ Global
 		{045AE27F-3809-4A68-AC04-D948D4208BBB}.Release|x86.ActiveCfg = Release|x86
 		{045AE27F-3809-4A68-AC04-D948D4208BBB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.NoTabsAfterNonTabs = True
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/plain
+	EndGlobalSection
 EndGlobal

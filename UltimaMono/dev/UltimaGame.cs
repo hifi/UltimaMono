@@ -1,0 +1,363 @@
+/***************************************************************************
+ *   UltimaGame.cs
+ *   Copyright (c) 2015 UltimaXNA Development Team
+ * 
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ ***************************************************************************/
+#region usings
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
+using UltimaXNA.Configuration;
+using UltimaXNA.Core;
+using UltimaXNA.Core.Diagnostics;
+using UltimaXNA.Core.Diagnostics.Tracing;
+using UltimaXNA.Core.Graphics;
+using UltimaXNA.Core.Input;
+using UltimaXNA.Core.Network;
+using UltimaXNA.Core.Resources;
+using UltimaXNA.Core.UI;
+using UltimaXNA.Ultima;
+using UltimaXNA.Ultima.Audio;
+using UltimaXNA.Ultima.IO;
+using UltimaXNA.Ultima.Login;
+using UltimaXNA.Ultima.Resources;
+using UltimaXNA.Ultima.World;
+using UltimaXNA.Configuration.Properties;
+#endregion
+
+namespace UltimaXNA
+{
+    internal class UltimaGame : Game
+    {
+        public static bool IsRunning // false = engine immediately quits.
+        {
+            get;
+            set;
+        }
+
+        public static double TotalMS;
+
+        public UltimaGame()
+        {
+            InitializeGraphicsDeviceAndWindow();
+            InitializeExitGuard();
+            SetupWindowForLogin();
+        }
+
+        #region Active & Queued Models
+        private AUltimaModel m_Model;
+        private AUltimaModel m_QueuedModel;
+
+        public AUltimaModel QueuedModel
+        {
+            get { return m_QueuedModel; }
+            set
+            {
+                if(m_QueuedModel != null)
+                {
+                    m_QueuedModel.Dispose();
+                    m_QueuedModel = null;
+                }
+                m_QueuedModel = value;
+
+                if(m_QueuedModel != null)
+                {
+                    m_QueuedModel.Initialize();
+                }
+            }
+        }
+
+        public AUltimaModel ActiveModel
+        {
+            get { return m_Model; }
+            set
+            {
+                if(m_Model != null)
+                {
+                    m_Model.Dispose();
+                    m_Model = null;
+                }
+                m_Model = value;
+                if(m_Model != null)
+                {
+                    m_Model.Initialize();
+                }
+            }
+        }
+
+        public void ActivateQueuedModel()
+        {
+            if (m_QueuedModel != null)
+            {
+                ActiveModel = QueuedModel;
+                m_QueuedModel = null;
+            }
+        }
+        #endregion
+
+        protected GraphicsDeviceManager GraphicsDeviceManager
+        {
+            get;
+            private set;
+        }
+
+        protected AudioService Audio
+        {
+            get;
+            private set;
+        }
+
+        protected InputManager Input
+        {
+            get;
+            private set;
+        }
+
+        protected UserInterfaceService UserInterface
+        {
+            get;
+            private set;
+        }
+
+        protected INetworkClient Network
+        {
+            get;
+            private set;
+        }
+
+        protected PluginManager Plugins
+        {
+            get;
+            private set;
+        }
+
+        protected override void Initialize()
+        {
+            Content.RootDirectory = "Content";
+
+            // register this instance as a service
+            ServiceRegistry.Register<UltimaGame>(this);
+
+            // Create all the services we need.
+            ServiceRegistry.Register<SpriteBatch3D>(new SpriteBatch3D(this));
+            ServiceRegistry.Register<SpriteBatchUI>(new SpriteBatchUI(this));
+            Audio = ServiceRegistry.Register<AudioService>(new AudioService());
+            Network = ServiceRegistry.Register<INetworkClient>(new NetworkClient());
+            Input = ServiceRegistry.Register<InputManager>(new InputManager(Window.Handle));
+            UserInterface = ServiceRegistry.Register<UserInterfaceService>(new UserInterfaceService());
+            Plugins = new PluginManager(AppDomain.CurrentDomain.BaseDirectory);
+
+            // Make sure we have a UO installation before loading IO.
+            if (FileManager.IsUODataPresent)
+            {
+                // Initialize and load data
+                IResourceProvider provider = new ResourceProvider(this);
+                provider.RegisterResource<EffectData>(new EffectDataResource());
+                ServiceRegistry.Register<IResourceProvider>(provider);
+
+                HueData.Initialize(GraphicsDevice);
+                SkillsData.Initialize();
+                GraphicsDevice.Textures[1] = HueData.HueTexture0;
+                GraphicsDevice.Textures[2] = HueData.HueTexture1;
+
+                IsRunning = true;
+                WorldModel.IsInWorld = false;
+
+                ActiveModel = new LoginModel();
+            }
+            else
+            {
+                Tracer.Critical("Did not find a compatible UO Installation. UltimaXNA is compatible with any version of UO through Mondian's Legacy.");
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (ServiceRegistry.ServiceExists<UltimaGame>())
+                ServiceRegistry.Unregister<UltimaGame>();
+            if (UserInterface != null)
+                UserInterface.Dispose();
+            base.Dispose(disposing);
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            if (Profiler.InContext("OutOfContext"))
+                Profiler.ExitContext("OutOfContext");
+            Profiler.EnterContext("Update");
+
+            IsFixedTimeStep = Settings.Engine.IsFixedTimeStep;
+
+            if(!IsRunning)
+            {
+                Settings.Save();
+                Exit();
+            }
+            else
+            {
+                base.Update(gameTime);
+                double totalMS = gameTime.TotalGameTime.TotalMilliseconds;
+                double frameMS = gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                TotalMS = totalMS;
+                Audio.Update();
+                Input.Update(totalMS, frameMS);
+                UserInterface.Update(totalMS, frameMS);
+                if (Network.IsConnected)
+                    Network.Slice();
+                ActiveModel.Update(totalMS, frameMS);
+            }
+
+            Profiler.ExitContext("Update");
+            Profiler.EnterContext("OutOfContext");
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            Profiler.EndFrame();
+            Profiler.BeginFrame();
+            if (Profiler.InContext("OutOfContext"))
+                Profiler.ExitContext("OutOfContext");
+            Profiler.EnterContext("RenderFrame");
+
+            if(!IsMinimized)
+            {
+                if (ActiveModel is WorldModel)
+                    CheckWindowSize(Settings.UserInterface.PlayWindowGumpResolution.Width, Settings.UserInterface.PlayWindowGumpResolution.Height);
+                else
+                    CheckWindowSize(800, 600);
+                
+                ActiveModel.GetView()
+                    .Draw(gameTime.ElapsedGameTime.TotalMilliseconds);
+                UserInterface.Draw(gameTime.ElapsedGameTime.TotalMilliseconds);
+            }
+
+            Profiler.ExitContext("RenderFrame");
+            Profiler.EnterContext("OutOfContext");
+
+            UpdateWindowCaption(gameTime);
+        }
+
+        private void UpdateWindowCaption(GameTime gameTime)
+        {
+            double frame_time_drawing = Profiler.GetContext("RenderFrame").TimeSpent * 1000d;
+            double frame_time_updating = Profiler.GetContext("Update").TimeSpent * 1000d;
+            double frame_time = Profiler.TotalTimeMS;
+            double last_draw_ms = Profiler.GetContext("RenderFrame").AverageOfLast60Times * 1000d;
+            double other_time = Profiler.GetContext("OutOfContext").TimeSpent * 1000d;
+
+            double total_time_check = other_time + frame_time_drawing + frame_time_updating;
+
+            this.Window.Title = string.Format("UltimaXNA Draw:{0:0.00}% Update:{1:0.00}% AvgDraw:{2:0.00}ms {3}",
+                100d * (frame_time_drawing / frame_time),
+                100d * (frame_time_updating / frame_time),
+                last_draw_ms,
+                gameTime.IsRunningSlowly ? "*" : string.Empty);
+        }
+
+        public void SetupWindowForLogin()
+        {
+            Restore();
+            Window.AllowUserResizing = false;
+            SetGraphicsDeviceWidthHeight(new ResolutionProperty(800, 600)); // a wee bit bigger than legacy. Looks nicer.
+        }
+
+        public void SetupWindowForWorld()
+        {
+            Window.AllowUserResizing = true;
+            SetGraphicsDeviceWidthHeight(Settings.UserInterface.WindowResolution);
+            if (Settings.UserInterface.IsMaximized)
+            {
+                Maximize();
+            }
+        }
+
+        public void SaveResolution()
+        {
+            if (IsMaximized)
+            {
+                Settings.UserInterface.IsMaximized = true;
+            }
+            else
+            {
+                Settings.UserInterface.WindowResolution = new ResolutionProperty(GraphicsDeviceManager.PreferredBackBufferWidth, GraphicsDeviceManager.PreferredBackBufferHeight);
+            }
+        }
+
+        private void InitializeExitGuard()
+        {
+        }
+
+        private void ExitGuard(object sender, CancelEventArgs e)
+        {
+            // we should dispose of the active model BEFORE we dispose of the window.
+            if (ActiveModel != null)
+                ActiveModel = null;
+        }
+
+        protected bool IsMinimized
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        protected bool IsMaximized
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        protected void Maximize()
+        {
+        }
+
+        protected void Restore()
+        {
+        }
+
+        private void InitializeGraphicsDeviceAndWindow()
+        {
+            GraphicsDeviceManager = new GraphicsDeviceManager(this);
+            GraphicsDeviceManager.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
+            GraphicsDeviceManager.PreparingDeviceSettings += OnPreparingDeviceSettings;
+        }
+
+        private void CheckWindowSize(int minWidth, int minHeight)
+        {
+            GameWindow window = this.Window; // (sender as GameWindow);
+            ResolutionProperty resolution = new ResolutionProperty(window.ClientBounds.Width, window.ClientBounds.Height);
+            // this only occurs when the world is active. Make sure that we don't reduce the window size
+            // smaller than the world gump size.
+            if (resolution.Width < minWidth)
+                resolution.Width = minWidth;
+            if (resolution.Height < minHeight)
+                resolution.Height = minHeight;
+            if (resolution.Width != window.ClientBounds.Width || resolution.Height != window.ClientBounds.Height)
+                SetGraphicsDeviceWidthHeight(resolution);
+        }
+
+        private void SetGraphicsDeviceWidthHeight(ResolutionProperty resolution)
+        {
+            GraphicsDeviceManager.PreferredBackBufferWidth = resolution.Width;
+            GraphicsDeviceManager.PreferredBackBufferHeight = resolution.Height;
+            GraphicsDeviceManager.SynchronizeWithVerticalRetrace = Settings.Engine.IsVSyncEnabled;
+            GraphicsDeviceManager.ApplyChanges();
+        }
+
+        private static void OnPreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
+        {
+            e.GraphicsDeviceInformation.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
+        }
+    }
+}
