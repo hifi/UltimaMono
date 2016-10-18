@@ -25,13 +25,18 @@ namespace UltimaXNA.Core.Input
         private double m_LastUpdateTime;
 
         private MouseState m_MouseState;
-
         private List<InputEventMouse> m_MouseEvents;
+
+        private KeyboardState m_KeyboardState;
+        private List<InputEventKeyboard> m_KeyboardEvents;
 
         public InputManager(IntPtr handle)
         {
+            m_MouseState = Mouse.GetState();
             m_MouseEvents = new List<InputEventMouse>();
-            m_MouseState = new MouseState();
+
+            m_KeyboardState = Keyboard.GetState();
+            m_KeyboardEvents = new List<InputEventKeyboard>();
         }
 
         public void Dispose()
@@ -74,19 +79,47 @@ namespace UltimaXNA.Core.Input
 
         public List<InputEventKeyboard> GetKeyboardEvents()
         {
-            return new List<InputEventKeyboard>();
+            var events = new List<InputEventKeyboard>();
+
+            foreach (var e in m_KeyboardEvents)
+            {
+                if (!e.Handled)
+                    events.Add(e);
+            }
+
+            return events;
         }
 
         public List<InputEventMouse> GetMouseEvents()
         {
-            return new List<InputEventMouse>(m_MouseEvents);
+            var events = new List<InputEventMouse>();
+
+            foreach (var e in m_MouseEvents)
+            {
+                if (!e.Handled)
+                    events.Add(e);
+            }
+
+            return events;
+        }
+
+        private static WinKeys TranslateToWinKey(Keys xnaKey)
+        {
+            return WinKeys.None;
+        }
+
+        private static Keys TranslateToXNAKey(WinKeys winKey)
+        {
+            return Keys.None;
         }
 
         public void Update(double totalTime, double frameTime)
         {
             m_MouseEvents.Clear();
+            m_KeyboardEvents.Clear();
 
             var mouseState = Mouse.GetState();
+            var keyState = Keyboard.GetState();
 
             if (mouseState.X != m_MouseState.X || mouseState.Y != m_MouseState.Y)
             {
@@ -111,17 +144,69 @@ namespace UltimaXNA.Core.Input
                 m_MouseEvents.Add(new InputEventMouse(buttonState, WinMouseButtons.Middle, 0, m_MouseState.X, m_MouseState.Y, 0, 0));
             }
 
-            m_MouseState = Mouse.GetState();
+            var oldKeys = new List<Keys>(m_KeyboardState.GetPressedKeys());
+            var newKeys = new List<Keys>(keyState.GetPressedKeys());
+
+            foreach (var k in oldKeys)
+            {
+                if (!newKeys.Contains(k))
+                {
+                    m_KeyboardEvents.Add(new InputEventKeyboard(KeyboardEvent.Up, TranslateToWinKey(k), 0x11001, 0));
+
+                    var press = new InputEventKeyboard(KeyboardEvent.Press, TranslateToWinKey(k), 0x11001, 0);
+                    press.OverrideKeyChar(TranslateToWinKey(k));
+                    m_KeyboardEvents.Add(press);
+                }
+            }
+
+            foreach (var k in newKeys)
+            {
+                if (!oldKeys.Contains(k))
+                {
+                    m_KeyboardEvents.Add(new InputEventKeyboard(KeyboardEvent.Down, TranslateToWinKey(k), 0x11001, 0));
+                }
+            }
+
+            m_MouseState = mouseState;
+            m_KeyboardState = keyState;
             m_LastUpdateTime = totalTime;
         }
 
         public bool HandleKeyboardEvent(KeyboardEvent type, WinKeys key, bool shift, bool alt, bool ctrl)
         {
+            foreach (InputEventKeyboard e in m_KeyboardEvents)
+            {
+                if (e.Handled)
+                    continue;
+
+                if (e.EventType == type &&
+                   e.KeyCode == key &&
+                   e.Shift == shift &&
+                   e.Alt == alt &&
+                   e.Control == ctrl)
+                {
+                    e.Handled = true;
+                    return true;
+                }
+            }
+
             return false;
         }
 
         public bool HandleMouseEvent(MouseEvent type, MouseButton mb)
         {
+            foreach (InputEventMouse e in m_MouseEvents)
+            {
+                if (e.Handled)
+                    continue;
+
+                if (e.EventType == type && e.Button == mb)
+                {
+                    e.Handled = true;
+                    return true;
+                }
+            }
+
             return false;
         }
     }
