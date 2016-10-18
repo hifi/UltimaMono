@@ -72,7 +72,6 @@
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Listeners\AEventListener.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Listeners\MsgBoxOnCriticalListener.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Profiler.cs" />
-    <Compile Include="UltimaXNA\dev\Core\DpiManager.cs" />
     <Compile Include="UltimaXNA\dev\Core\Extensions\ColorExtensions.cs" />
     <Compile Include="UltimaXNA\dev\Core\Extensions\PointExtensions.cs" />
     <Compile Include="UltimaXNA\dev\Core\Extensions\StringExtensions.cs" />
@@ -574,6 +573,8 @@
     <None Include="UltimaXNA\dev\Core\Input\InputManager.cs" />
     <Compile Include="UltimaMono\dev\Core\Diagnostics\HighPerformanceTimer.cs" />
     <None Include="UltimaXNA\dev\Core\Diagnostics\HighPerformanceTimer.cs" />
+    <Compile Include="UltimaMono\dev\Core\DpiManager.cs" />
+    <None Include="UltimaXNA\dev\Core\DpiManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
