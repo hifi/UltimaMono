@@ -566,8 +566,6 @@
     <None Include="UltimaXNA\dev\UltimaGame.cs" />
     <Compile Include="UltimaMono\dev\Core\ConsoleManager.cs" />
     <None Include="UltimaXNA\dev\Core\ConsoleManager.cs" />
-    <Compile Include="UltimaMono\dev\Core\Graphics\SpriteBatch3D.cs" />
-    <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
     <Compile Include="UltimaMono\dev\Core\Input\InputManager.cs" />
     <None Include="UltimaXNA\dev\Core\Input\InputManager.cs" />
     <Compile Include="UltimaMono\dev\Core\Diagnostics\HighPerformanceTimer.cs" />
@@ -576,6 +574,7 @@
     <None Include="UltimaXNA\dev\Core\DpiManager.cs" />
     <None Include="UltimaXNA\dev\Core\Windows\CultureHandler.cs" />
     <Compile Include="UltimaMono\dev\Core\Windows\CultureHandler.cs" />
+    <Compile Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
