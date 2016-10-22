@@ -181,7 +181,6 @@
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Listeners\StreamOuputEventListener.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Tracing\Tracer.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\GeneralExceptionHandler.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Data\Body.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Data\Chairs.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Data\ChatMode.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Data\ItemInContainer.cs" />
@@ -583,6 +582,8 @@
     <None Include="UltimaXNA\dev\Ultima\Resources\TexmapResource.cs" />
     <Compile Include="UltimaMono\dev\Core\Graphics\SpriteBatch3D.cs" />
     <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\Data\Body.cs" />
+    <None Include="UltimaXNA\dev\Ultima\Data\Body.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
@@ -595,6 +596,7 @@
     <Folder Include="UltimaMono\dev\Core\Diagnostics\" />
     <Folder Include="UltimaMono\dev\Core\Windows\" />
     <Folder Include="UltimaMono\dev\Ultima\Resources\" />
+    <Folder Include="UltimaMono\dev\Ultima\Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
