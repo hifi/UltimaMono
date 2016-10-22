@@ -566,7 +566,6 @@
     <None Include="UltimaXNA\dev\Core\DpiManager.cs" />
     <None Include="UltimaXNA\dev\Core\Windows\CultureHandler.cs" />
     <Compile Include="UltimaMono\dev\Core\Windows\CultureHandler.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
     <Compile Include="UltimaMono\TextureConv.cs" />
     <None Include="UltimaXNA\dev\Core\Windows\WndProc.cs" />
     <None Include="UltimaXNA\dev\Core\Windows\MessageHook.cs" />
@@ -582,6 +581,8 @@
     <None Include="UltimaXNA\dev\Ultima\Resources\ArtMulResource.cs" />
     <None Include="UltimaXNA\dev\Ultima\Resources\GumpMulResource.cs" />
     <None Include="UltimaXNA\dev\Ultima\Resources\TexmapResource.cs" />
+    <Compile Include="UltimaMono\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
