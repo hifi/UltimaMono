@@ -162,7 +162,6 @@
     <Compile Include="UltimaXNA\dev\Configuration\UltimaOnlineSettings.cs" />
     <Compile Include="UltimaXNA\dev\Core\Windows\WinKeys.cs" />
     <Compile Include="UltimaXNA\dev\Core\Input\InputEvent.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Input\InputEventKeyboard.cs" />
     <Compile Include="UltimaXNA\dev\Core\Input\InputEventMouse.cs" />
     <Compile Include="UltimaXNA\dev\Core\Windows\Message.cs" />
     <Compile Include="UltimaXNA\dev\Core\IO\AsyncWriter.cs" />
@@ -587,6 +586,9 @@
     <Compile Include="UltimaMono\dev\Ultima\UI\Controls\ItemGumpling.cs" />
     <None Include="UltimaXNA\dev\Ultima\UI\Controls\ItemGumpling.cs" />
     <Compile Include="UltimaMono\dev\Ultima\UI\Controls\Button.cs" />
+    <Compile Include="UltimaMono\dev\Core\Input\InputEventKeyboard.cs" />
+    <None Include="UltimaXNA\dev\Core\Input\InputEventKeyboard.cs" />
+    <Compile Include="UltimaMono\dev\Core\Input\Keymap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
