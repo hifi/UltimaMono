@@ -211,7 +211,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\Network\Client\SellItemsPacket.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Network\Server\ServerPingPacket.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\GumpDefTranslator.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\AGumpPic.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\ColorPickerBox.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\EquipmentSlot.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\GumpPicWithWidth.cs" />
@@ -497,13 +496,11 @@
     <Compile Include="UltimaXNA\dev\Core\UI\AControl.cs" />
     <Compile Include="UltimaXNA\dev\Core\Graphics\SpriteBatchUI.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Gump.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\Button.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\CheckerTrans.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\ColorPicker.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\CroppedText.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\DropDownList.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\ItemGumplingPaperdoll.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\ItemGumpling.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\PaperdollLargeUninteractable.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\PaperDollInteractable.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\ScrollBar.cs" />
@@ -584,6 +581,12 @@
     <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
     <Compile Include="UltimaMono\dev\Ultima\Data\Body.cs" />
     <None Include="UltimaXNA\dev\Ultima\Data\Body.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\UI\Controls\AGumpPic.cs" />
+    <None Include="UltimaXNA\dev\Ultima\UI\Controls\AGumpPic.cs" />
+    <None Include="UltimaXNA\dev\Ultima\UI\Controls\Button.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\UI\Controls\ItemGumpling.cs" />
+    <None Include="UltimaXNA\dev\Ultima\UI\Controls\ItemGumpling.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\UI\Controls\Button.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
@@ -597,6 +600,8 @@
     <Folder Include="UltimaMono\dev\Core\Windows\" />
     <Folder Include="UltimaMono\dev\Ultima\Resources\" />
     <Folder Include="UltimaMono\dev\Ultima\Data\" />
+    <Folder Include="UltimaMono\dev\Ultima\UI\" />
+    <Folder Include="UltimaMono\dev\Ultima\UI\Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
