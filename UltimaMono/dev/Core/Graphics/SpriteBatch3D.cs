@@ -111,8 +111,8 @@ namespace UltimaXNA.Core.Graphics
                     break;
                 }
             }
-            if (!draw)
-                return false;
+            //if (!draw)
+            //    return false;
 
             // Set the draw position's z value, and increment the z value for the next drawn object.
             vertices[0].Position.Z = vertices[1].Position.Z = vertices[2].Position.Z = vertices[3].Position.Z = GetNextUniqueZ();
