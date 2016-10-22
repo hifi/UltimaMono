@@ -127,7 +127,6 @@
     <Compile Include="UltimaXNA\dev\Core\Resolutions.cs" />
     <Compile Include="UltimaXNA\dev\Core\Windows\WinMouseButtons.cs" />
     <Compile Include="UltimaXNA\dev\Core\Windows\NativeConstants.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Windows\NativeMethods.cs" />
     <Compile Include="UltimaXNA\dev\Core\Network\INetworkClient.cs" />
     <Compile Include="UltimaXNA\dev\Core\DelayedAction.cs" />
     <Compile Include="UltimaXNA\dev\Core\Patterns\IModule.cs" />
@@ -166,13 +165,11 @@
     <Compile Include="UltimaXNA\dev\Core\Input\InputEventKeyboard.cs" />
     <Compile Include="UltimaXNA\dev\Core\Input\InputEventMouse.cs" />
     <Compile Include="UltimaXNA\dev\Core\Windows\Message.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Windows\MessageHook.cs" />
     <Compile Include="UltimaXNA\dev\Core\IO\AsyncWriter.cs" />
     <Compile Include="UltimaXNA\dev\Core\IO\BinaryFileReader.cs" />
     <Compile Include="UltimaXNA\dev\Core\IO\BinaryFileWriter.cs" />
     <Compile Include="UltimaXNA\dev\Core\IO\GenericReader.cs" />
     <Compile Include="UltimaXNA\dev\Core\IO\GenericWriter.cs" />
-    <Compile Include="UltimaXNA\dev\Core\Windows\WndProc.cs" />
     <Compile Include="UltimaXNA\dev\Core\Patterns\MVC\AController.cs" />
     <Compile Include="UltimaXNA\dev\Core\Patterns\MVC\AModel.cs" />
     <Compile Include="UltimaXNA\dev\Core\Patterns\MVC\AView.cs" />
@@ -200,8 +197,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\Data\SpellbookData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Data\SpellDefinition.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Data\ClientVersion.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Resources\AnimationFrame.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Resources\ArtMulResource.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\BodyDef.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\EffectData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\Fonts\CharacterAscii.cs" />
@@ -453,7 +448,6 @@
     <Compile Include="UltimaXNA\dev\Core\UI\HTML\Styles\Enums.cs" />
     <Compile Include="UltimaXNA\dev\Core\UI\HTML\HtmlImageList.cs" />
     <Compile Include="UltimaXNA\dev\Core\Diagnostics\Metrics.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Resources\GumpMulResource.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\MobtypeData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\MultiData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\MusicData.cs" />
@@ -526,7 +520,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\TextLabelAsciiCropped.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\TilePic.cs" />
     <Compile Include="UltimaXNA\dev\Core\UI\UserInterfaceService.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Resources\TexmapResource.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\TileData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\TileMatrixDataPatch.cs" />
     <Compile Include="UltimaXNA\dev\Core\Network\NetworkClient.cs" />
@@ -549,7 +542,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\World\Maps\Map.cs" />
     <Compile Include="UltimaXNA\dev\Core\Graphics\VertexPositionNormalTextureHue.cs" />
     <Compile Include="UltimaXNA\dev\Properties\AssemblyInfo.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Resources\AnimationResource.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Resources\HueData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\IO\FileIndexEntry5D.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Input\WorldCursor.cs" />
@@ -575,6 +567,21 @@
     <None Include="UltimaXNA\dev\Core\Windows\CultureHandler.cs" />
     <Compile Include="UltimaMono\dev\Core\Windows\CultureHandler.cs" />
     <Compile Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <Compile Include="UltimaMono\TextureConv.cs" />
+    <None Include="UltimaXNA\dev\Core\Windows\WndProc.cs" />
+    <None Include="UltimaXNA\dev\Core\Windows\MessageHook.cs" />
+    <Compile Include="UltimaMono\dev\Core\Windows\NativeMethods.cs" />
+    <None Include="UltimaXNA\dev\Core\Windows\NativeMethods.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\Resources\AnimationFrame.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\Resources\AnimationResource.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\Resources\ArtMulResource.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\Resources\GumpMulResource.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\Resources\TexmapResource.cs" />
+    <None Include="UltimaXNA\dev\Ultima\Resources\AnimationFrame.cs" />
+    <None Include="UltimaXNA\dev\Ultima\Resources\AnimationResource.cs" />
+    <None Include="UltimaXNA\dev\Ultima\Resources\ArtMulResource.cs" />
+    <None Include="UltimaXNA\dev\Ultima\Resources\GumpMulResource.cs" />
+    <None Include="UltimaXNA\dev\Ultima\Resources\TexmapResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
@@ -586,6 +593,7 @@
     <Folder Include="UltimaMono\dev\Core\Input\" />
     <Folder Include="UltimaMono\dev\Core\Diagnostics\" />
     <Folder Include="UltimaMono\dev\Core\Windows\" />
+    <Folder Include="UltimaMono\dev\Ultima\Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
