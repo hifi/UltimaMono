@@ -20,7 +20,7 @@ namespace UltimaXNA.Ultima.Audio
         {
         }
 
-        public void PlaySound(int soundIndex, AudioEffects effect = AudioEffects.None, float volume = 1.0f)
+        public void PlaySound(int soundIndex, AudioEffects effect = AudioEffects.None, float volume = 1.0f, bool spamCheck = false)
         {
         }
 

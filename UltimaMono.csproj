@@ -589,6 +589,7 @@
     <Compile Include="UltimaMono\dev\Core\Input\InputEventKeyboard.cs" />
     <None Include="UltimaXNA\dev\Core\Input\InputEventKeyboard.cs" />
     <Compile Include="UltimaMono\dev\Core\Input\Keymap.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\UI\WorldGumps\CrimeQueryGump.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
