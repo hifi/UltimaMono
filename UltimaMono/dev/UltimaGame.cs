@@ -174,7 +174,7 @@ namespace UltimaXNA
             }
             else
             {
-                Tracer.Critical("Did not find a compatible UO Installation. UltimaXNA is compatible with any version of UO through Mondian's Legacy.");
+                Tracer.Critical("Did not find a compatible UO Installation. UltimaMono is compatible with any version of UO through Mondian's Legacy.");
             }
         }
 
@@ -255,7 +255,7 @@ namespace UltimaXNA
 
             double total_time_check = other_time + frame_time_drawing + frame_time_updating;
 
-            this.Window.Title = string.Format("UltimaXNA Draw:{0:0.00}% Update:{1:0.00}% AvgDraw:{2:0.00}ms {3}",
+            this.Window.Title = string.Format("UltimaMono Draw:{0:0.00}% Update:{1:0.00}% AvgDraw:{2:0.00}ms {3}",
                 100d * (frame_time_drawing / frame_time),
                 100d * (frame_time_updating / frame_time),
                 last_draw_ms,
