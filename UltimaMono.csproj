@@ -29,15 +29,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="NVorbis">
-      <HintPath>packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\NVorbis.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\OpenTK.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Net" />
     <Reference Include="System.Web" />
@@ -47,7 +38,6 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <Compile Include="UltimaXNA\dev\Configuration\AudioSettings.cs" />
     <Compile Include="UltimaXNA\dev\Configuration\GumpSettings.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Input\Macro.cs" />
@@ -60,7 +50,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\Input\Macros.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Input\MacroType.cs" />
     <Compile Include="UltimaXNA\dev\Configuration\Properties\MouseProperty.cs" />
-    <Compile Include="UltimaXNA\dev\Bootstrapper.cs" />
     <Compile Include="UltimaXNA\dev\Configuration\Properties\SavedGumpProperty.cs" />
     <Compile Include="UltimaXNA\dev\Configuration\UserInterfaceSettings.cs" />
     <Compile Include="UltimaXNA\dev\Core\ComponentModel\EqualityHelper.cs" />
@@ -590,6 +579,8 @@
     <None Include="UltimaXNA\dev\Core\Input\InputEventKeyboard.cs" />
     <Compile Include="UltimaMono\dev\Core\Input\Keymap.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\WorldGumps\CrimeQueryGump.cs" />
+    <Compile Include="UltimaMono\dev\Bootstrapper.cs" />
+    <None Include="UltimaXNA\dev\Bootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
@@ -605,6 +596,12 @@
     <Folder Include="UltimaMono\dev\Ultima\Data\" />
     <Folder Include="UltimaMono\dev\Ultima\UI\" />
     <Folder Include="UltimaMono\dev\Ultima\UI\Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Linux.csproj">
+      <Project>{35253CE1-C864-4CD3-8249-4D1319748E8F}</Project>
+      <Name>MonoGame.Framework.Linux</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

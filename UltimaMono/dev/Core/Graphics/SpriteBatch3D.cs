@@ -105,14 +105,14 @@ namespace UltimaXNA.Core.Graphics
             // Check: only draw if the texture is within the visible area.
             for (int i = 0; i < 4; i++) // only draws a 2 triangle tristrip.
             {
-                if (m_ViewportArea.Contains(vertices[i].Position) == ContainmentType.Contains)
+                if (m_ViewportArea.Contains(vertices[i].Position) != ContainmentType.Disjoint)
                 {
                     draw = true;
                     break;
                 }
             }
-            //if (!draw)
-            //    return false;
+            if (!draw)
+                return false;
 
             // Set the draw position's z value, and increment the z value for the next drawn object.
             vertices[0].Position.Z = vertices[1].Position.Z = vertices[2].Position.Z = vertices[3].Position.Z = GetNextUniqueZ();
