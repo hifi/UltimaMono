@@ -464,7 +464,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\IsometricLighting.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\IsometricView.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Maps\MapTile.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\World\Input\MouseOverList.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\LoginGumps\CharacterListGump.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\WorldGumps\ChatControl.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\WorldGumps\ContainerGump.cs" />
@@ -565,8 +564,6 @@
     <None Include="UltimaXNA\dev\Ultima\Resources\ArtMulResource.cs" />
     <None Include="UltimaXNA\dev\Ultima\Resources\GumpMulResource.cs" />
     <None Include="UltimaXNA\dev\Ultima\Resources\TexmapResource.cs" />
-    <Compile Include="UltimaMono\dev\Core\Graphics\SpriteBatch3D.cs" />
-    <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
     <Compile Include="UltimaMono\dev\Ultima\Data\Body.cs" />
     <None Include="UltimaXNA\dev\Ultima\Data\Body.cs" />
     <Compile Include="UltimaMono\dev\Ultima\UI\Controls\AGumpPic.cs" />
@@ -581,6 +578,10 @@
     <Compile Include="UltimaXNA\dev\Ultima\UI\WorldGumps\CrimeQueryGump.cs" />
     <Compile Include="UltimaMono\dev\Bootstrapper.cs" />
     <None Include="UltimaXNA\dev\Bootstrapper.cs" />
+    <Compile Include="UltimaMono\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
+    <Compile Include="UltimaMono\dev\Ultima\World\Input\MouseOverList.cs" />
+    <None Include="UltimaXNA\dev\Ultima\World\Input\MouseOverList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
@@ -596,6 +597,8 @@
     <Folder Include="UltimaMono\dev\Ultima\Data\" />
     <Folder Include="UltimaMono\dev\Ultima\UI\" />
     <Folder Include="UltimaMono\dev\Ultima\UI\Controls\" />
+    <Folder Include="UltimaMono\dev\Ultima\World\" />
+    <Folder Include="UltimaMono\dev\Ultima\World\Input\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Linux.csproj">
