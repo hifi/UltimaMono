@@ -264,9 +264,9 @@ namespace UltimaXNA.Ultima.World.Input
                     new Rectangle(Texture.Width - ((int)mousePosition.X - (int)Position.X), (int)mousePosition.Y - (int)Position.Y, 1, 1);
                 if (Texture.Bounds.Contains(new Point(pRect.X, pRect.Y)))
                 {
-                    ushort[] pixelData = new ushort[1];
-                    Texture.GetData<ushort>(0, pRect, pixelData, 0, 1);
-                    if (pixelData[0] > 0)
+                    Color[] pixelData = new Color[1];
+                    Texture.GetData<Color>(0, pRect, pixelData, 0, 1);
+                    if (pixelData[0].PackedValue > 0)
                         return true;
                 }
             }
