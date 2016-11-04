@@ -294,12 +294,9 @@
     <Compile Include="UltimaXNA\dev\Core\UI\HuedTexture.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\UI\UltimaCursor.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldInteraction.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\LoginClientStatus.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Login\LoginView.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Login\Accounts\CharacterListEntry.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Login\Accounts\Characters.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\Servers\ServerListEntry.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\Servers\Servers.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Data\Features.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Player\SkillData.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Player\StatLockData.cs" />
@@ -455,10 +452,6 @@
     <Compile Include="UltimaXNA\dev\Ultima\World\Entities\Multis\Multi.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Entities\Overhead.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Entities\PropertyList.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\CharacterListState.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\CreateCharacterState.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\LoggingInState.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\SelectServerState.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Maps\MapChunk.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\Managers\StaticManager.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\IsometricLighting.cs" />
@@ -516,9 +509,6 @@
     <Compile Include="UltimaXNA\dev\Core\Network\PacketHandler.cs" />
     <Compile Include="UltimaXNA\dev\Core\Network\QueuedPacket.cs" />
     <Compile Include="UltimaXNA\dev\Core\Network\SocketState.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\AState.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\StateManager.cs" />
-    <Compile Include="UltimaXNA\dev\Ultima\Login\States\LoginState.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\Serial.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\MiniMapChunk.cs" />
     <Compile Include="UltimaXNA\dev\Ultima\World\WorldViews\MiniMapTexture.cs" />
@@ -582,6 +572,12 @@
     <None Include="UltimaXNA\dev\Core\Graphics\SpriteBatch3D.cs" />
     <Compile Include="UltimaMono\dev\Ultima\World\Input\MouseOverList.cs" />
     <None Include="UltimaXNA\dev\Ultima\World\Input\MouseOverList.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\Data\MapDiffInfo.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\Login\Data\CreateCharacterData.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\Login\Data\ServerListEntry.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\Network\Client\ClientHardwarePacket.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\Resources\UOPIndex.cs" />
+    <Compile Include="UltimaXNA\dev\Ultima\UI\Controls\ButtonResizable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UltimaMono\" />
@@ -599,6 +595,7 @@
     <Folder Include="UltimaMono\dev\Ultima\UI\Controls\" />
     <Folder Include="UltimaMono\dev\Ultima\World\" />
     <Folder Include="UltimaMono\dev\Ultima\World\Input\" />
+    <Folder Include="UltimaXNA\dev\Ultima\Login\Servers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Linux.csproj">
